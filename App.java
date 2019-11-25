@@ -1,6 +1,9 @@
+package AppAgenda;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.SplashScreen;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -79,6 +82,7 @@ public class App extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         passField = new javax.swing.JPasswordField();
+        jDialog5 = new javax.swing.JDialog();
         btnAdauga = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         agenda = new javax.swing.JList<>();
@@ -285,7 +289,7 @@ public class App extends javax.swing.JFrame {
         });
 
         jTextPane1.setEditable(false);
-        jTextPane1.setText("Aceasta aplicatie implementeaza o agenda de contacte. Se pot adauga contacte, edita, sterge, se poate salva agenda si apoi incarca. Contactele pot fi filtrate si ordonate.");
+        jTextPane1.setText("Aceasta aplicatie implementeaza o agenda de contacte. Mai intai, trebuie sa va inregistrati (HITHERE). Se pot adauga contacte, edita, sterge, se poate salva agenda si apoi incarca. Contactele pot fi filtrate si ordonate.");
         jTextPane1.setMinimumSize(new java.awt.Dimension(200, 200));
         jScrollPane3.setViewportView(jTextPane1);
 
@@ -303,9 +307,9 @@ public class App extends javax.swing.JFrame {
                         .addComponent(jLabel9))
                     .addGroup(jDialog3Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDialog3Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
+                        .addGap(102, 102, 102)
                         .addComponent(jButton1)))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
@@ -317,10 +321,10 @@ public class App extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jDialog4.setMinimumSize(new java.awt.Dimension(300, 150));
@@ -361,7 +365,19 @@ public class App extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout jDialog5Layout = new javax.swing.GroupLayout(jDialog5.getContentPane());
+        jDialog5.getContentPane().setLayout(jDialog5Layout);
+        jDialog5Layout.setHorizontalGroup(
+            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog5Layout.setVerticalGroup(
+            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("AppAgenda");
 
         btnAdauga.setText("Adauga");
         btnAdauga.addActionListener(new java.awt.event.ActionListener() {
@@ -412,6 +428,7 @@ public class App extends javax.swing.JFrame {
         menuFile.setText("File");
 
         menuOpen.setText("Open");
+        menuOpen.setEnabled(false);
         menuOpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuOpenActionPerformed(evt);
@@ -420,6 +437,7 @@ public class App extends javax.swing.JFrame {
         menuFile.add(menuOpen);
 
         jMenuItem2.setText("Save");
+        jMenuItem2.setEnabled(false);
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -510,6 +528,7 @@ public class App extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdaugaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdaugaActionPerformed
@@ -695,8 +714,11 @@ public class App extends javax.swing.JFrame {
         if(!passField.getText().equals(pass)){
             JOptionPane.showMessageDialog(this, "Parola incorecta!");
         }else{
-            System.out.println("ok");
+            //System.out.println("ok");
             jDialog4.dispose();
+            menuOpen.setEnabled(true);
+            jMenuItem2.setEnabled(true);
+            jMenuItem3.setEnabled(false);
             
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -739,6 +761,11 @@ public class App extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try{
+                    Thread.sleep(1000);
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
                 new App().setVisible(true);
             }
         });
@@ -773,6 +800,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;
     private javax.swing.JDialog jDialog4;
+    private javax.swing.JDialog jDialog5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
